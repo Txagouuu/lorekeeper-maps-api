@@ -1,10 +1,10 @@
 from fastapi import FastAPI,WebSocketDisconnect,WebSocket
 
 
+websocket = FastAPI(title="")
 
-app = FastAPI(title="LoreKeeper Maps API")
 
-@app.websocket("/ws/maps/{map_id}")
+@websocket.websocket("/ws/maps/{map_id}")
 async def maps_endpoint(websocket:WebSocket, map_id:int):
     await websocket.accept()
     print(f"Nova conexão no mapa:{map_id}")
@@ -16,4 +16,3 @@ async def maps_endpoint(websocket:WebSocket, map_id:int):
             await websocket.send_text(f"Pacote recebido pelo BACKEND {data} ")
     except WebSocketDisconnect:
         print(f"Cliente desconectou do mapa {map_id}")
-    
