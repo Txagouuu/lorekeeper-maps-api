@@ -4,4 +4,4 @@ class BaseEntity(BaseModel):
     id: str
     x_pos:int
     y_pos:int
-    assert_id:str
+    asset_id:str
