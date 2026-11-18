@@ -1,5 +1,4 @@
 from pydantic import Field
-from typing import Optional
 from base import BaseEntity
 
 
