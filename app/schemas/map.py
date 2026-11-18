@@ -1,3 +1,4 @@
+import uuid
 from pydantic import BaseModel,Field
 from typing import List
 from backgrounds import BackgroundTile
@@ -8,12 +9,12 @@ from tokens import CharacterToken
 
 class MapLayers(BaseModel):
     background: List[BackgroundTile] = Field(default_factory=list)
-    obstacule: List[Obstacule] = Field(default_factory=list)
+    obstacules: List[Obstacule] = Field(default_factory=list)
     tokens: List[CharacterToken] = Field(default_factory=list)
 
 class MapState(BaseModel):
-    map_id: str
-    canvas_width: int = 50
-    canvas_height: int = 50
-    grid_size:int = 50
+    map_id: str = Field(...,description="ID do mapa")
+    canvas_width: int = Field(default=50,description="Largura do grid")
+    canvas_height: int = Field(default=50,description="Altura do grid")
+    grid_size:int = Field(default=50, description="Tamanho do mapa")
     layers: MapLayers = Field(default_factory=MapLayers)
