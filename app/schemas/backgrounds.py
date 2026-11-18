@@ -1,16 +1,15 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
+from base import BaseEntity
 
 class GoblalBackgound(BaseModel):
 
-    asset_id: str
-    scale: float = 1.0
-    offset_x: int = 0
-    offeset_y: int = 0
+    asset_id: str = Field(...,min_length=1,description="ID ")
+    scale: float = Field(default=1.0,gt=0,description="Esacala do fundo global")
+    offset_x: int = Field(default=0,description="Deslocamento horizontal")
+    offeset_y: int = Field(default=0,description="Deslocamento vertical")
 
 
-class BackgroundTile(BaseModel):
+class BackgroundTile(BaseEntity):
 
-    x_pos: int
-    y_pos: int
-    asset_id: str
-    rotation:int = 0
+    asset_id: str = Field(..., min_length=1,description="ID da textura do tile")
+    rotation:int = Field(default=0, ge=0, lt=360, description="Rotação do objeto")
