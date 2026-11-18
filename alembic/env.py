@@ -8,16 +8,21 @@ import sys
 from dotenv import load_dotenv
 from os.path import abspath, dirname
 
-sys.path.insert(0, dirname(dirname(abspath(__file__))))
-from app.core.core import Base
+BASE_DIR = dirname(dirname(abspath(__file__)))
+sys.path.insert(0,BASE_DIR)
 
-load_dotenv()
+load_dotenv(os.path.join(BASE_DIR,".env"))
+from app.core.core import Base
+from app.db.models import MapDB
 
 config = context.config
 
 db_url = os.getenv("DATABASE_URL")
 if db_url:
     config.set_main_option("sqlalchemy.url",db_url)
+
+if not db_url:
+    raise ValueError(f"DATABASE_URL não encontrada em: {os.path.join(BASE_DIR, '.env')}")
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
