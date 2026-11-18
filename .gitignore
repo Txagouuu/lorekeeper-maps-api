@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Banco de Dados Local (Essencial para segurança)
+*.db
+*.sqlite
+*.sqlite3
+banco.db
+
+# Cache do Python gerado na pasta do Alembic
+alembic/versions/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
