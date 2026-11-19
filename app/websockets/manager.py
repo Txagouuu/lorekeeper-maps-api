@@ -1,18 +1,17 @@
-from fastapi import FastAPI,WebSocketDisconnect,WebSocket
+from fastapi import WebSocket
+from typing import Dict,List
+from schemas.map import MapState
+class ConnectionManager():
+    def __init__(self):
+        # active_connections: É um dicionário onde a chave é o map_id e o valor é uma lista com as conexões abertas daquela sala.
+        self.active_connections: Dict[str,List[WebSocket]] = {}
 
+        # map_states: Guarda o estado atual de cada mapa em RAM durante a sessão (para não ter que ir no SQLite a cada passo de um token).
+        self.map_states: Dict[str, MapState] = {}
 
-websocket = FastAPI(title="")
+    async def connect(self,websocket:WebSocket,map_id:str):
+        await websocket.accept()
+        if map_id not in self.active_connections:
+            self.active_connections[map_id] = []
+        self.active_connections[map_id].append(websocket)
 
-
-@websocket.websocket("/ws/maps/{map_id}")
-async def maps_endpoint(websocket:WebSocket, map_id:int):
-    await websocket.accept()
-    print(f"Nova conexão no mapa:{map_id}")
-    try:
-        while True:
-            data = await websocket.receive_text()
-            print(f"Mensagem RECEBIDA: {data}")
-
-            await websocket.send_text(f"Pacote recebido pelo BACKEND {data} ")
-    except WebSocketDisconnect:
-        print(f"Cliente desconectou do mapa {map_id}")
