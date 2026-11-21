@@ -9,10 +9,19 @@ e o projeto utiliza referências diretas aos commits do Git.
 
 ### 2026-11-21
 
+- **Adicionado** endpoint `POST /maps` para criar mapas e persistir o estado inicial no banco.
+- **Adicionado** endpoint `GET /maps/{map_id}` com busca primeiro em memória e fallback no banco.
+- **Adicionado** roteador WebSocket em `/ws/{map_id}` para receber, validar e transmitir ações em tempo real.
+- **Adicionado** middleware CORS na aplicação FastAPI para permitir integrações com clientes externos.
+- **Adicionado** instância global do `ConnectionManager` para compartilhar conexões e estados entre os endpoints.
+- **Alterado** a configuração da aplicação principal para registrar os roteadores de mapas e WebSockets.
+- **Corrigido** imports relativos e absolutos dos módulos para manter a consistência da aplicação.
+- **Corrigido** a carga das variáveis de ambiente por meio do `python-dotenv`.
+- **Adicionado** este changelog e sua referência no `README`.
 - **Adicionado** suporte a `UUID` no `ConnectionManager`, estado de mapas em memória e manipulação de ações WebSocket.
 - **Adicionado** operações para mover tokens e adicionar ou remover entidades.
 - **Adicionado** transmissão das ações recebidas para todas as conexões de um mapa.
-- Referências: `a7ddd43`
+- Referências: `0c07ad7`, `ea92577`, `d418bb5`, `ef1fc7a`, `ff07967`, `a7ddd43`
 
 ## Histórico
 
