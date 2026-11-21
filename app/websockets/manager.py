@@ -85,3 +85,6 @@ class ConnectionManager():
         for dead_ws in dead_connection:
 
             self.disconnect(dead_ws,map_id)
+
+# Instância global: guarda as salas e os mapas ativos na RAM
+manager = ConnectionManager()
