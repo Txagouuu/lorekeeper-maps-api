@@ -1,11 +1,11 @@
 from fastapi import WebSocket
 from uuid import UUID
 from typing import Dict,List
-from schemas.map import MapState
-from schemas.actions import Action
-from schemas.tokens import CharacterToken
-from schemas.backgrounds import BackgroundTile
-from schemas.obstacules import Obstacule
+from app.schemas.map import MapState
+from app.schemas.actions import Action
+from app.schemas.tokens import CharacterToken
+from app.schemas.backgrounds import BackgroundTile
+from app.schemas.obstacules import Obstacule
 class ConnectionManager():
     def __init__(self):
         # active_connections: É um dicionário onde a chave é o map_id e o valor é uma lista com as conexões abertas daquela sala.

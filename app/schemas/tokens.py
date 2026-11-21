@@ -1,5 +1,5 @@
 from pydantic import Field
-from base import BaseEntity
+from .base import BaseEntity
 
 
 class CharacterToken(BaseEntity):

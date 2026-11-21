@@ -1,5 +1,5 @@
 from pydantic import BaseModel,Field
-from base import BaseEntity
+from .base import BaseEntity
 from uuid import UUID, uuid4
 class GoblalBackgound(BaseModel):
 

@@ -1,9 +1,9 @@
 from uuid import UUID,uuid4
 from pydantic import BaseModel,Field
 from typing import List
-from backgrounds import BackgroundTile
-from obstacules import Obstacule
-from tokens import CharacterToken
+from .backgrounds import BackgroundTile
+from .obstacules import Obstacule
+from .tokens import CharacterToken
 
 
 
